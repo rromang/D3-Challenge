@@ -157,6 +157,9 @@ d3.csv("data.csv"). then(function(healthData, err) {
   // append y axis
   chartGroup.append("g")
     .call(leftAxis);
+  
+  // textGroup.append('g')
+  //   .call(leftAxis);
 
   // append initial circles
   var circlesGroup = chartGroup.selectAll("circle")
@@ -165,9 +168,19 @@ d3.csv("data.csv"). then(function(healthData, err) {
     .append("circle")
     .attr("cx", d => xLinearScale(d[chosenXAxis]))
     .attr("cy", d => yLinearScale(d.healthcare))
-    .attr("r", 20)
-    .attr("fill", "pink")
-    .attr("opacity", ".5");
+    .attr("r", 10)
+    .attr("fill", "lightblue")
+    .attr("opacity", ".5")
+
+  // var textGroup = chartGroup.selectAll("circle")
+  //   .data(healthData)
+  //   .enter()
+  //   .append("abbr")
+  //   .text(d => yLinearScale(d.abbr))
+  //   .attr('font-size',8)//font size
+  //   .attr('dx', -10)//positions text towards the left of the center of the circle
+  //   .attr('dy',4)
+
 
   // Create group for two x-axis labels
   var labelsGroup = chartGroup.append("g")
@@ -205,6 +218,7 @@ d3.csv("data.csv"). then(function(healthData, err) {
 
   // updateToolTip function above csv import
   var circlesGroup = updateToolTip(chosenXAxis, circlesGroup);
+
 
   // x axis labels event listener
   labelsGroup.selectAll("text")

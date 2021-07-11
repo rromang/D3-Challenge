@@ -87,7 +87,7 @@ function updateToolTip(chosenXAxis, circlesGroup) {
     .style("background-color", "lightgrey")
     .style("border", "solid")
     .style("border-width", "2px")
-    .style("border-radius", "5px")
+    .style("border-radius", "4px")
     .style("padding", "5px")
     // .offset([75, -55])
     .html(function(d) {

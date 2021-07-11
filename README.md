@@ -18,3 +18,4 @@ The core assignment was portion was done (It is all one code although some of th
 
 ## Bonus
 
+Multiples x axis were created, however the multiple y axis as well as the text showing inside the circles were not obtained. The plot was responsive when clicked in the different x axis.

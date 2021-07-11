@@ -140,9 +140,7 @@ d3.csv("data.csv"). then(function(healthData, err) {
   }
   //////////
   var yLinearScale = yScale(healthData, chosenYAxis);
-  // var yLinearScale = d3.scaleLinear()
-  //   .domain([0, d3.max(healthData, d => d.healthcare)])
-  //   .range([height, 0]);
+
 
   // Create initial axis functions
   var bottomAxis = d3.axisBottom(xLinearScale);
@@ -157,9 +155,6 @@ d3.csv("data.csv"). then(function(healthData, err) {
   // append y axis
   chartGroup.append("g")
     .call(leftAxis);
-  
-  // textGroup.append('g')
-  //   .call(leftAxis);
 
   // append initial circles
   var circlesGroup = chartGroup.selectAll("circle")

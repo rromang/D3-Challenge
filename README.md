@@ -14,7 +14,7 @@ The core assignment was portion was done (It is all one code although some of th
 
 
 2. Labels were created and situated on the bottom and the left of the graph.
-3. Graphs visualized in server. Using the python -m http.server causes an error due to cross origin requests and access control checks. All the visualizations were done with VS Code extension Live Server.
+3. Graphs visualized in server -- Using the python -m http.server causes an error due to cross origin requests and access control checks. All the visualizations were done with VS Code extension Live Server instead.
 
 ## Bonus
 

@@ -85,7 +85,7 @@ function updateToolTip(chosenXAxis, circlesGroup) {
     .attr("class", "tooltip")
     .offset([80, -60])
     .html(function(d) {
-      return (`${d.state}<br>${label} ${d[chosenXAxis]}<br>Lacks Healthcare: ${d[chosenYAxis]}`);
+      return (`${d.state}<br>${label} ${d[chosenXAxis]}<br> Lacks Healthcare: `);
     });
 
   circlesGroup.call(toolTip);
@@ -220,6 +220,8 @@ d3.csv("data.csv"). then(function(healthData, err) {
 
         // replaces chosenXAxis with value
         chosenXAxis = value;
+
+        // console.log(chosenXAxis)
 
         // functions here found above csv import
         // updates x scale for new data

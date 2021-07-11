@@ -55,13 +55,14 @@ function renderAxes(newXScale, xAxis) {
 
 // function used for updating circles group with a transition to
 // new circles
-function renderCircles(circlesGroup, newXScale, chosenXAxis) {
+function renderCircles(circlesGroup, newXScale, chosenXAxis, text) {
 
   circlesGroup.transition()
     .duration(1000)
-    .attr("cx", d => newXScale(d[chosenXAxis]));
+    .attr("cx", d => newXScale(d[chosenXAxis]))
+    .attr("x", d => newXScale(d[chosenXAxis]));
 
-  return circlesGroup;
+  return circlesGroup, text;
 }
 
 // function used for updating circles group with new tooltip
@@ -119,8 +120,8 @@ d3.csv("data.csv"). then(function(healthData, err) {
   function yScale(healthData, chosenYAxis) {
     // create scales
     var yLinearScale = d3.scaleLinear()
-      .domain([d3.min(healthData, d => d[chosenYAxis])*0.3,
-        d3.max(healthData, d => d[chosenYAxis]) * 3
+      .domain([d3.min(healthData, d => d[chosenYAxis])*0.4,
+        d3.max(healthData, d => d[chosenYAxis]) * 3.5
       ])
       .range([height, 0]);
   
@@ -140,7 +141,6 @@ d3.csv("data.csv"). then(function(healthData, err) {
   }
   //////////
   var yLinearScale = yScale(healthData, chosenYAxis);
-
 
   // Create initial axis functions
   var bottomAxis = d3.axisBottom(xLinearScale);
@@ -165,7 +165,38 @@ d3.csv("data.csv"). then(function(healthData, err) {
     .attr("cy", d => yLinearScale(d.healthcare))
     .attr("r", 10)
     .attr("fill", "lightblue")
-    .attr("opacity", ".8")
+    .attr("opacity", "1")
+
+
+  var text = chartGroup.selectAll("text")
+  .data(healthData)
+  .enter()
+    .append("text")
+    .attr("x", d => xLinearScale(d[chosenXAxis]))
+    .attr("y", d => yLinearScale(d.healthcare))
+    .attr("font-size", "10")
+    .attr("fill", "white")
+    .attr("opacity", "1")
+    .text(function(d) { return d.abbr; })
+    .attr("dy", "0.3em")
+    .attr("dx", "-0.9em")
+    // .attr("transform", `translate(${margin.left}, ${margin.top})`)
+   
+  
+
+//append initial text for circles
+  // var text = chartGroup.selectAll("text")
+  //   .data(healthData)
+  //   .enter()
+  //   .append("text")
+  //   .attr("x", d => xLinearScale(d[chosenXAxis]))
+  //   .attr("y", d => yLinearScale(d.healthcare))
+  //   .text(function(d) { return d.abbr; })
+  //   .attr("dy", "0.3em")
+  //   .attr("dx", "-0.7em")
+  //   // .attr("transform", `translate(${margin.left}, ${margin.top})`)
+  //   .attr("font-size", "10")
+  //   .attr("fill", "white")
 
 
   // Create group for two x-axis labels
@@ -204,7 +235,6 @@ d3.csv("data.csv"). then(function(healthData, err) {
 
   // updateToolTip function above csv import
   var circlesGroup = updateToolTip(chosenXAxis, circlesGroup);
-
 
   // x axis labels event listener
   labelsGroup.selectAll("text")

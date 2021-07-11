@@ -84,7 +84,12 @@ function updateToolTip(chosenXAxis, circlesGroup) {
 
   var toolTip = d3.tip()
     .attr("class", "tooltip")
-    .offset([80, -60])
+    .style("background-color", "lightgrey")
+    .style("border", "solid")
+    .style("border-width", "2px")
+    .style("border-radius", "5px")
+    .style("padding", "5px")
+    // .offset([75, -55])
     .html(function(d) {
       return (`${d.state}<br>${label} ${d[chosenXAxis]}<br> Lacks Healthcare: `);
     });

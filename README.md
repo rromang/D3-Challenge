@@ -1,4 +1,5 @@
-# D3-Challenge
+# D3 Data Exploration
+(D3-Challenge)
 
 This works is to fulfill requirements towards Data Visualization Bootcamp.
 
